@@ -1,8 +1,9 @@
-markdown
-
 # AWS Amplify Liveliness Web Application
 
-A web application that implements face liveliness detection using AWS Rekognition service. This guide will walk you through setting up the application from scratch.
+A web application that implements **Face Liveness Detection** using **AWS Rekognition**.  
+This guide walks you through setting up the application from scratch.
+
+---
 
 ## Prerequisites
 
@@ -14,115 +15,43 @@ A web application that implements face liveliness detection using AWS Rekognitio
 - Git
 - PowerShell (Windows) or Terminal (Mac/Linux)
 
-## Video Tutorial
-
-For a visual walkthrough, check out this comprehensive tutorial:
-[https://www.youtube.com/watch?v=yja5HvR_9AQ](https://www.youtube.com/watch?v=yja5HvR_9AQ)
-
-## Project Structure
-
-aws-amplify-liveliness-web/
-├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ ├── App.js
-│ │ └── index.js
-│ ├── public/
-│ ├── amplify/
-│ ├── api/
-│ ├── build/
-│ ├── .env
-│ ├── package.json
-│ └── package-lock.json
-├── lambda/
-│ ├── create-session/
-│ │ ├── lambda_function.py
-│ │ └── requirements.txt
-│ └── get-session/
-│ ├── lambda_function.py
-│ └── requirements.txt
-└── README.md
-
-text
-
-## Setup Instructions
-
-### 1. Clone Repository
-
-````bash
-git clone [your-repository-url]
-cd aws-amplify-liveliness-web
-2. Deploy Create Session Lambda Function
-Navigate to the create-session Lambda directory and
-
-aws-amplify-liveliness-web/
-├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ ├── App.js
-│ │ └── index.js
-│ ├── public/
-│ ├── amplify/
-│ ├── api/
-│ ├── build/
-│ ├── .env
-│ ├── package.json
-│ └── package-lock.json
-├── lambda/
-│ ├── create-session/
-│ │ ├── lambda_function.py
-│ │ └── requirements.txt
-│ └── get-session/
-│ ├── lambda_function.py
-│ └── requirements.txt
-└── README.md its also inside markdown code full code for readme.md
-markdown
-# AWS Amplify Liveliness Web Application
-
-A web application that implements face liveliness detection using AWS Rekognition service. This guide will walk you through setting up the application from scratch.
-
-## Prerequisites
-
-- AWS Account
-- Python 3.7+
-- Node.js 14.x or higher
-- npm 6.x or higher
-- AWS Amplify CLI
-- Git
-- PowerShell (Windows) or Terminal (Mac/Linux)
+---
 
 ## Video Tutorial
 
-For a visual walkthrough, check out this comprehensive tutorial:
-[https://www.youtube.com/watch?v=yja5HvR_9AQ](https://www.youtube.com/watch?v=yja5HvR_9AQ)
+For a visual walkthrough, check out this tutorial:  
+https://www.youtube.com/watch?v=yja5HvR_9AQ
+
+---
 
 ## Project Structure
+
+```text
 aws-amplify-liveliness-web/
 ├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ ├── App.js
-│ │ └── index.js
-│ ├── public/
-│ ├── amplify/
-│ ├── api/
-│ ├── build/
-│ ├── .env
-│ ├── package.json
-│ └── package-lock.json
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── App.js
+│   │   └── index.js
+│   ├── public/
+│   ├── amplify/
+│   ├── api/
+│   ├── build/
+│   ├── .env
+│   ├── package.json
+│   └── package-lock.json
 ├── lambda/
-│ ├── create-session/
-│ │ ├── lambda_function.py
-│ │ └── requirements.txt
-│ └── get-session/
-│ ├── lambda_function.py
-│ └── requirements.txt
+│   ├── create-session/
+│   │   ├── lambda_function.py
+│   │   └── requirements.txt
+│   └── get-session/
+│       ├── lambda_function.py
+│       └── requirements.txt
 └── README.md
+```
 
-text
+---
 
 ## Setup Instructions
 
@@ -131,294 +60,205 @@ text
 ```bash
 git clone [your-repository-url]
 cd aws-amplify-liveliness-web
-2. Deploy Create Session Lambda Function
-Navigate to the create-session Lambda directory and create deployment package:
+```
 
-bash
+---
+
+### 2. Deploy **Create Session** Lambda Function
+
+```bash
 cd lambda/create-session
 pip install -r requirements.txt --target .
-For Windows (PowerShell):
+```
 
-powershell
+#### Windows (PowerShell)
+
+```powershell
 Compress-Archive -Path * -DestinationPath ..\create_session.zip -Force
 tar -tf ..\create_session.zip | Select-String "lambda_function"
-For Mac/Linux:
+```
 
-bash
+#### Mac / Linux
+
+```bash
 zip -r ../create_session.zip *
 unzip -l ../create_session.zip | grep lambda_function
-3. Deploy Get Session Lambda Function
-Navigate to the get-session Lambda directory and create deployment package:
+```
 
-bash
-cd lambda/get-session
+---
+
+### 3. Deploy **Get Session** Lambda Function
+
+```bash
+cd ../get-session
 pip install -r requirements.txt --target .
-For Windows (PowerShell):
+```
 
-powershell
+#### Windows (PowerShell)
+
+```powershell
 Compress-Archive -Path * -DestinationPath ..\get_session.zip -Force
 tar -tf ..\get_session.zip | Select-String "lambda_function"
-For Mac/Linux:
+```
 
-bash
+#### Mac / Linux
+
+```bash
 zip -r ../get_session.zip *
 unzip -l ../get_session.zip | grep lambda_function
-4. AWS Console Setup
-Create Create Session Lambda Function
-Go to AWS Console → Lambda
+```
 
-Click Create function
+---
 
-Select Author from scratch
+### 4. AWS Console Setup
 
-Configure:
+#### Create Lambda Functions
 
-Function name: create-session
+**Create Session**
 
-Runtime: Python 3.x
+- Function name: `create-session`
+- Runtime: Python 3.x
+- Architecture: x86_64
 
-Architecture: x86_64
+**Get Session**
 
-Click Create function
+- Function name: `get-session`
+- Runtime: Python 3.x
+- Architecture: x86_64
 
-Create Get Session Lambda Function
-Go to AWS Console → Lambda
+---
 
-Click Create function
+### 5. Upload Lambda Code
 
-Select Author from scratch
+Upload:
 
-Configure:
+- `create_session.zip` → `create-session`
+- `get_session.zip` → `get-session`
 
-Function name: get-session
+Click **Save** after upload.
 
-Runtime: Python 3.x
+---
 
-Architecture: x86_64
+### 6. Configure IAM Roles (Both Lambdas)
 
-Click Create function
+Attach the following inline policy:
 
-Upload Code for Create Session
-In Code source section of create-session function
-
-Click Upload from → .zip file
-
-Select create_session.zip
-
-Click Save
-
-Upload Code for Get Session
-In Code source section of get-session function
-
-Click Upload from → .zip file
-
-Select get_session.zip
-
-Click Save
-
-Configure IAM Role for Create Session
-Go to Configuration → Permissions for create-session function
-
-Click the IAM role name (e.g., createsession-role-5yo91hpl)
-
-Click Add permissions → Create inline policy
-
-Select JSON tab and paste:
-
-json
+```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "rekognition:StartFaceLivenessSession",
-                "rekognition:CreateFaceLivenessSession",
-                "rekognition:GetFaceLivenessSessionResults"
-            ],
-            "Resource": "*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "rekognition:StartFaceLivenessSession",
+        "rekognition:CreateFaceLivenessSession",
+        "rekognition:GetFaceLivenessSessionResults"
+      ],
+      "Resource": "*"
+    }
+  ]
 }
-Click Next → Review
+```
 
-Name: rekognition-liveliness-policy
+Policy name:
 
-Click Create policy
+```
+rekognition-liveliness-policy
+```
 
-Configure IAM Role for Get Session
-Go to Configuration → Permissions for get-session function
+---
 
-Click the IAM role name (e.g., getsession-role-la9lmzi1)
+### 7. Frontend Setup
 
-Click Add permissions → Create inline policy
-
-Select JSON tab and paste:
-
-json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "rekognition:StartFaceLivenessSession",
-                "rekognition:CreateFaceLivenessSession",
-                "rekognition:GetFaceLivenessSessionResults"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-Click Next → Review
-
-Name: rekognition-liveliness-policy
-
-Click Create policy
-
-5. Frontend Setup
-Navigate to the frontend directory and install dependencies:
-
-bash
-# Navigate to frontend directory
+```bash
 cd frontend
-
-# Check directory contents (should see .env file)
-dir  # Windows
-ls   # Mac/Linux
-
-# Install npm dependencies
 npm install
-
-# Initialize Amplify
 amplify init
-
-# Follow the prompts to configure your Amplify project:
-# - Enter a name for the project: liveness
-# - Initialize the project with the above configuration? Yes
-# - Select the authentication method: AWS profile
-# - Choose your AWS profile: (select your configured profile)
-
-# Start the development server
 npm start
-6. Configure Unauthenticated IAM Role
-Locate Unauthenticated Role
-Go to AWS Console → IAM → Roles
+```
 
-Search for amplify-liveness-dev-c8ab9-unauthRole
+---
 
-Click on the role name
+### 8. Configure Unauthenticated IAM Role
 
-Attach Rekognition Policy
-Click Add permissions → Create inline policy
+Attach this policy to the **Amplify unauthenticated role**:
 
-Select JSON tab
-
-Paste the following policy:
-
-json
+```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "rekognition:StartFaceLivenessSession",
-                "rekognition:CreateFaceLivenessSession",
-                "rekognition:GetFaceLivenessSessionResults"
-            ],
-            "Resource": "*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "rekognition:StartFaceLivenessSession",
+        "rekognition:CreateFaceLivenessSession",
+        "rekognition:GetFaceLivenessSessionResults"
+      ],
+      "Resource": "*"
+    }
+  ]
 }
-Click Next → Review
+```
 
-Name: rekognition-unauth-policy
+---
 
-Click Create policy
+### 9. Configure Cognito Identity Pool
 
-7. Configure Cognito Identity Pool
-Enable Guest Access
-Go to AWS Console → Cognito → Identity pools
+- Enable **Unauthenticated (Guest) Access**
+- Save changes
 
-Select liveness793250a9_identitypool_793250a9__dev
+---
 
-Click Edit identity pool
+### 10. Environment Variables (`.env`)
 
-Navigate to Authentication providers
-
-Under Unauthenticated identities, ensure Enable access to unauthenticated identities is checked
-
-Click Save changes
-
-8. Verify Configuration
-Check Frontend .env file
-Ensure your .env file contains the necessary configuration:
-
-env
+```env
 REACT_APP_REGION=your-aws-region
 REACT_APP_IDENTITY_POOL_ID=your-identity-pool-id
 REACT_APP_USER_POOL_ID=your-user-pool-id
 REACT_APP_USER_POOL_WEB_CLIENT_ID=your-user-pool-client-id
-Test the Application
-Run npm start in the frontend directory
+```
 
-Open http://localhost:3000
+> ⚠️ **Do not commit `.env` to version control**
 
-Verify unauthenticated access works for Rekognition face liveness
+---
 
-Authentication Flow
-Unauthenticated users can access Rekognition face liveness features
+## Authentication Flow
 
-Cognito Identity Pool provides temporary AWS credentials
+- Unauthenticated users access face liveness
+- Cognito Identity Pool provides temporary credentials
+- IAM unauth role grants Rekognition permissions
 
-IAM Role (amplify-liveness-dev-c8ab9-unauthRole) grants necessary permissions
+---
 
-Troubleshooting
-Issue	Solution
-Identity Pool Issues	Verify guest access is enabled
-Permission Errors	Check unauthenticated IAM role policy
-Amplify Status	Run amplify status to check configuration
-Local Development	Ensure .env file has correct values
-Lambda Deployment	Verify zip file contains lambda_function.py
-Important Notes
-Guest access must be enabled for unauthenticated users
+## Troubleshooting
 
-IAM role policy grants specific Rekognition permissions
+| Issue                | Solution                                 |
+| -------------------- | ---------------------------------------- |
+| Identity Pool Issues | Enable guest access                      |
+| Permission Errors    | Check unauth IAM role                    |
+| Amplify Issues       | Run `amplify status`                     |
+| Lambda Errors        | Verify zip contains `lambda_function.py` |
 
-Identity pool provides temporary credentials to frontend
+---
 
-Both Lambda functions require proper IAM roles
+## Clean Up (Avoid Charges)
 
-The .env file should never be committed to version control
+Delete:
 
-Clean Up
-Delete resources to avoid charges:
+- Lambda functions
+- IAM roles
+- Cognito Identity Pool
+- Amplify project
+- CloudWatch logs
 
-Both Lambda functions (create-session and get-session)
+---
 
-All IAM roles (including unauthenticated role)
+## Support
 
-Cognito Identity Pool
+- Check AWS Lambda & Rekognition docs
+- Review CloudWatch logs
+- Rewatch the video tutorial
 
-Amplify project
+---
 
-Associated CloudWatch logs
-
-Support
-For issues and questions:
-
-Check AWS Lambda documentation
-
-Review CloudWatch logs for errors
-
-Verify IAM permissions are correctly configured
-
-Ensure all prerequisites are met
-
-Watch the video tutorial for visual guidance
-
-Note: Replace [your-repository-url] with your actual repository URL and update AWS resource names according to your setup.
-````
+**Note:** Replace `[your-repository-url]` and AWS resource names according to your setup.
