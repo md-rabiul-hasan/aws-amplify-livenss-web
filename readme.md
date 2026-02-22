@@ -212,10 +212,9 @@ Attach this policy to the **Amplify unauthenticated role**:
 ### 10. Environment Variables (`.env`)
 
 ```env
-REACT_APP_REGION=your-aws-region
-REACT_APP_IDENTITY_POOL_ID=your-identity-pool-id
-REACT_APP_USER_POOL_ID=your-user-pool-id
-REACT_APP_USER_POOL_WEB_CLIENT_ID=your-user-pool-client-id
+NEXT_PUBLIC_CREATE_SESSION_LAMBDA_URL="your-api-gateway-url-for-create-session-lambda"
+NEXT_PUBLIC_GET_SESSION_LAMBDA_URL="your-api-gateway-url-for-get-session-lambda"
+DISABLE_ESLINT_PLUGIN=true
 ```
 
 > ⚠️ **Do not commit `.env` to version control**
